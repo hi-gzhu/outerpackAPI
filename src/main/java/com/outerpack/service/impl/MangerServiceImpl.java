@@ -1,6 +1,7 @@
 package com.outerpack.service.impl;
 
 import com.outerpack.entity.pojo.Manager;
+import com.outerpack.entity.vo.Manager.ManagerResult;
 import com.outerpack.mapper.ManagerMapper;
 import com.outerpack.service.MangerService;
 import lombok.Data;
@@ -23,12 +24,12 @@ public class MangerServiceImpl implements MangerService {
 
 
     @Override
-    public Manager getManagerByName(String username) {
+    public ManagerResult getManagerByName(String username) {
         return managerMapper.getManagerByName(username);
     }
 
     @Override
-    public Manager getManagerById(Integer id) {
+    public ManagerResult getManagerById(Integer id) {
 
         return managerMapper.getManagerById(id);
     }
@@ -36,6 +37,7 @@ public class MangerServiceImpl implements MangerService {
     @Override
     public void changePassword(String username, String password) {
         managerMapper.changePassword(username,password);
+
         return;
     }
 }

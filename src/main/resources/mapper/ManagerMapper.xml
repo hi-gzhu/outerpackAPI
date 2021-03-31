@@ -4,13 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.outerpack.mapper.ManagerMapper">
 
-    <select id="getManagerByName" resultType="com.outerpack.entity.pojo.Manager" >
-        select *
+    <resultMap id="managerResult" type="com.outerpack.entity.vo.Manager.ManagerResult">
+        <id property="man_id" column="man_id"/>
+        <id property="username" column="man_username"/>
+        <id property="password" column="man_password"/>
+    </resultMap>
+    <select id="getManagerByName" resultMap="managerResult" >
+        select man_id,man_username,man_password
         from recruit.manager
         where man_username=#{username};
     </select>
-    <select id="getManagerById" resultType="com.outerpack.entity.pojo.Manager">
-        select *
+    <select id="getManagerById" resultMap="managerResult">
+        select man_id,man_username,man_password
         from recruit.manager
         where man_id=#{ID}
     </select>

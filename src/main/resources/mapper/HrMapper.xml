@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.outerpack.mapper.HrMapper">
+
+    <resultMap id="HrResult" type="com.outerpack.entity.vo.HR.HrResult">
+        <id property="hr_id" column="hr_id"/>
+        <id property="username" column="hr_username"/>
+        <id property="password" column="hr_password"/>
+    </resultMap>
+    <select id="getHrByName" resultMap="HrResult" >
+        select hr_id,hr_username,hr_password
+        from recruit.hr
+        where hr_username=#{username};
+    </select>
+    <select id="getHrById" resultMap="HrResult">
+        select hr_id,hr_username,hr_password
+        from recruit.hr
+        where hr_id=#{ID}
+    </select>
+    <update id="changePassword">
+        update recruit.manager
+        set man_password=#{password}
+        where man_username=#{username};
+    </update>
+</mapper>
