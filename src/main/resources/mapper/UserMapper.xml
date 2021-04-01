@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.outerpack.mapper.UserMapper">
+
+    <select id="getUserById" resultType="com.outerpack.entity.pojo.User">
+        select *
+        from user
+        where id=#{ID};
+    </select>
+    <select id="getUserByName" resultType="com.outerpack.entity.pojo.User">
+        select *
+        from user
+        where username=#{username};
+    </select>
+    <update id="changePassword">
+        update recruit.manager
+        set password=#{password}
+        where username=#{username};
+    </update>
+</mapper>
