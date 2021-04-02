@@ -5,7 +5,10 @@ import com.outerpack.entity.dto.LoginRequest;
 import com.outerpack.entity.pojo.User;
 import com.outerpack.service.UserService;
 import com.outerpack.utils.JwtUtils;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,5 +52,7 @@ public class LoginController {
     public Result getAdminPage(){
         return Result.success("管理员页面");
     }
+
+
 
 }
