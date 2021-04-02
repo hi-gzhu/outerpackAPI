@@ -18,4 +18,5 @@ public class User {
     private String password;
     private int permission_id;
     private int role;
+    private String power;
 }
