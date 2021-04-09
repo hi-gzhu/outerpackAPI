@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.outerpack.mapper.CandidateMapper">
+    <select id="getCandidateById" resultType="com.outerpack.entity.pojo.Candidate">
+        select *
+        from candidates
+        where can_id=#{ID};
+    </select>
+    <resultMap id="candidate" type="com.outerpack.entity.vo.Candidate.CandidateBrief">
+        <id property="canId" column="can_id"/>
+        <id property="canName" column="can_name"/>
+        <id property="canAge" column="can_age"/>
+        <id property="canExperience" column="can_experience"/>
+        <id property="canWantPosition" column="can_wantPosition"/>
+    </resultMap>
+    <select id="getCandidateList" resultMap="candidate">
+        select can_id,can_name,can_age,can_experience,can_wantPosition
+        from candidates;
+    </select>
+</mapper>
