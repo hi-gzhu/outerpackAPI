@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.outerpack.mapper.InterviewMapper">
+    <select id="getAllInterview" resultType="com.outerpack.entity.pojo.Interview">
+        select * from interview;
+    </select>
+    <select id="getInterviewByCandidateId" resultType="com.outerpack.entity.pojo.Interview">
+        select *
+        from interview
+        where can_id=#{ID};
+    </select>
+    <select id="getInterviewByHrId" resultType="com.outerpack.entity.pojo.Interview">
+        select *
+        from interview
+        where hr_id=#{ID};
+    </select>
+    <select id="getInterviewByInterviewId" resultType="com.outerpack.entity.pojo.Interview">
+        select *
+        from interview
+        where inter_id=#{ID};
+    </select>
+
+</mapper>
