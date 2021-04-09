@@ -28,4 +28,9 @@ public class UserServiceImpl implements UserService {
     public void changePassword(String username, String password) {
         userMapper.changePassword(username,password);
     }
+
+    @Override
+    public User getUserPowerByID(Integer id) {
+        return userMapper.getUserPowerByID(id);
+    }
 }

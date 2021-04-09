@@ -28,4 +28,18 @@ public interface UserMapper {
      * @param password 用户密码
      */
     void changePassword(@Param("username")String username,@Param("password")String password);
+
+    /**
+     *
+     * @param id 没有被赋予权限等级的用户
+     * @return  已经被赋值的权限用户
+     */
+    User getUserPowerByID(@Param("id")Integer id);
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    String getUserPowerDetailByID(@Param("id")Integer id);
 }

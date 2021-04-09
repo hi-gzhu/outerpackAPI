@@ -16,7 +16,7 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private int permission_id;
+    private int permissionId;
     private int role;
     private String power;
 }

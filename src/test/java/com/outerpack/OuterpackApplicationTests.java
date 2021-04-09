@@ -19,8 +19,8 @@ class OuterpackApplicationTests {
 
     @Test
     void contextLoads() {
-        User userById = userService.getUserById(1);
-        System.out.println(userById);
+        User userPowerByID = userService.getUserPowerByID(1);
+        System.out.println(userPowerByID);
     }
 
 }

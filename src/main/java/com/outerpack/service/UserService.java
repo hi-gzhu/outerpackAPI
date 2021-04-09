@@ -29,4 +29,10 @@ public interface UserService {
      */
     void changePassword(@Param("username")String username,@Param("password")String password);
 
+    /**
+     *
+     * @param id 没有被赋予权限等级的用户
+     * @return  已经被赋值的权限用户
+     */
+    User getUserPowerByID(@Param("id")Integer id);
 }

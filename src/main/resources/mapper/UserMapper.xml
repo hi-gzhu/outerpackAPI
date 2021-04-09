@@ -19,4 +19,9 @@
         set password=#{password}
         where username=#{username};
     </update>
+    <select id="getUserPowerByID" resultType="com.outerpack.entity.pojo.User">
+        select u.id,u.username,u.password,u.permission_id,p.power
+        from user u,user_permission p
+        where u.permission_id=p.permission_id
+    </select>
 </mapper>
