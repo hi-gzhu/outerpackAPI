@@ -19,4 +19,19 @@
         select can_id,can_name,can_age,can_experience,can_wantPosition
         from candidates;
     </select>
+    <insert id="addCandidate" parameterType="com.outerpack.entity.pojo.Candidate">
+        insert into candidates
+            (can_id,can_name,can_age,can_experience,can_wantPosition,can_identify,can_dep,can_grade,can_power,can_gender,can_date,can_salary,can_phone,can_head)
+            values
+            (#{canId},#{canName},#{canAge},#{canExperience},#{canWantPosition},#{canIdentify},#{canDep},#{canGrade},#{canPower},#{canGender},#{canDate},#{canSalary},#{canPhone},#{canHead});
+    </insert>
+    <update id="updateGradeById">
+        update candidates
+        set can_grade=#{newGrade}
+        where can_id=#{candidateId}
+    </update>
+    <delete id="deleteCandidateById">
+        delete from candidates
+        where can_id=#{ID}
+    </delete>
 </mapper>

@@ -33,5 +33,23 @@ public interface InterviewService {
      * @return
      */
     Interview getInterviewByInterviewId(@Param("ID")int ID);
+    /**
+     * 加入面试记录
+     * @param interview 面试记录
+     * @return
+     */
+    void addInterview(@Param("interview") Interview interview);
 
+    /**
+     * 根据面试记录的ID删除面试记录
+     * @param ID
+     */
+    void deleteInterviewById(@Param("ID")int ID);
+
+    /**
+     * 修改面试记录的描述
+     * @param ID 要修改对的面试记录的ID
+     * @param detail 修改后面试记录的描述
+     */
+    void updateInterviewById(@Param("ID")int ID,@Param("detail")String detail);
 }

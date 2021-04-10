@@ -24,6 +24,24 @@ public interface CandidateMapper {
      */
     List<CandidateBrief> getCandidateList();
 
+    /**
+     * 增加一个应聘者
+     * @param candidate 应聘者
+     */
+    void addCandidate(Candidate candidate);
+
+    /**
+     * 根据应聘者ID修改应聘者的面试等级
+     * @param ID
+     * @param grade
+     */
+    void updateGradeById(@Param("candidateId")int ID,@Param("newGrade")int grade);
+
+    /**
+     * 根据应聘者ID删除应聘者记录
+     * @param ID
+     */
+    void deleteCandidateById(@Param("ID")int ID);
 
 
 }

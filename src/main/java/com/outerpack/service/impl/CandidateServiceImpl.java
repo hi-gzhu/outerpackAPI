@@ -24,4 +24,22 @@ public class CandidateServiceImpl implements CandidateService {
     public List<CandidateBrief> getCandidateList() {
         return candidateMapper.getCandidateList();
     }
+
+    @Override
+    public void addCandidate(Candidate candidate) {
+        candidateMapper.addCandidate(candidate);
+        return;
+    }
+
+    @Override
+    public void updateGradeById(int ID, int grade) {
+        candidateMapper.updateGradeById(ID,grade);
+        return;
+    }
+
+    @Override
+    public void deleteCandidateById(int ID) {
+        candidateMapper.deleteCandidateById(ID);
+        return;
+    }
 }

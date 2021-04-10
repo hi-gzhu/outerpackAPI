@@ -34,4 +34,22 @@ public class InterviewServiceImpl implements InterviewService {
     public Interview getInterviewByInterviewId(int ID) {
         return mapper.getInterviewByInterviewId(ID);
     }
+
+    @Override
+    public void addInterview(Interview interview) {
+        mapper.addInterview(interview);
+        return;
+    }
+
+    @Override
+    public void deleteInterviewById(int ID) {
+        mapper.deleteInterviewById(ID);
+        return;
+    }
+
+    @Override
+    public void updateInterviewById(int ID, String detail) {
+        mapper.updateInterviewById(ID,detail);
+        return;
+    }
 }

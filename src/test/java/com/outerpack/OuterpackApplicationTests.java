@@ -18,14 +18,11 @@ import java.util.List;
 class OuterpackApplicationTests {
 
     @Autowired
-    InterviewService interviewService;
+    CandidateService candidateService;
 
     @Test
     void contextLoads() {
-        List<Interview> allInterview = interviewService.getAllInterview();
-        for (Interview i : allInterview) {
-            System.out.println(i);
-        }
+        candidateService.updateGradeById(3,2);
     }
 
 }
