@@ -7,7 +7,6 @@ import com.outerpack.entity.pojo.User;
 import com.outerpack.entity.vo.Candidate.CandidateBrief;
 import com.outerpack.entity.vo.HR.HrResult;
 import com.outerpack.entity.vo.Manager.ManagerResult;
-import com.outerpack.mapper.InterviewMapper;
 import com.outerpack.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,8 @@ class OuterpackApplicationTests {
     @Test
     void contextLoads() {
         List<Interview> allInterview = interviewService.getAllInterview();
-        for (Interview interview : allInterview) {
-            System.out.println(interview);
+        for (Interview i : allInterview) {
+            System.out.println(i);
         }
     }
 

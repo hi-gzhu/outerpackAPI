@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Interview {
-    private Integer inter_id;
-    private Integer hr_id;
-    private Integer can_id;
-    private String inter_detail;
+    private Integer interId;
+    private Integer hrId;
+    private Integer canId;
+    private String interDetail;
 }
