@@ -25,8 +25,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changePassword(String username, String password) {
-        userMapper.changePassword(username,password);
+    public Boolean changePassword(String username, String password) {
+        int result=userMapper.changePassword(username,password);
+        return result>0;
     }
 
     @Override

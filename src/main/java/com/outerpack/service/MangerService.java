@@ -29,6 +29,6 @@ public interface MangerService {
      * @param password  管理员的账户密码
      * @return
      */
-    void changePassword(@Param("username") String username,@Param("password") String password);
+    Boolean changePassword(@Param("username") String username,@Param("password") String password);
 
 }

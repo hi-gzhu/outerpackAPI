@@ -35,10 +35,10 @@ public class MangerServiceImpl implements MangerService {
     }
 
     @Override
-    public void changePassword(String username, String password) {
-        managerMapper.changePassword(username,password);
+    public Boolean changePassword(String username, String password) {
+        int result=managerMapper.changePassword(username,password);
 
-        return;
+        return result>0;
     }
 }
 

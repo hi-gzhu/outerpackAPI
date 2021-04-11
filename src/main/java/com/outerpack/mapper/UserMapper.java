@@ -27,7 +27,7 @@ public interface UserMapper {
      * @param username 用户名
      * @param password 用户密码
      */
-    void changePassword(@Param("username")String username,@Param("password")String password);
+    int changePassword(@Param("username")String username,@Param("password")String password);
 
     /**
      *

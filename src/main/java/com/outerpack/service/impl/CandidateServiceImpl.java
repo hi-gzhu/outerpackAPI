@@ -26,20 +26,20 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public void addCandidate(Candidate candidate) {
-        candidateMapper.addCandidate(candidate);
-        return;
+    public Boolean addCandidate(Candidate candidate) {
+        int result=candidateMapper.addCandidate(candidate);
+        return result>0;
     }
 
     @Override
-    public void updateGradeById(int ID, int grade) {
-        candidateMapper.updateGradeById(ID,grade);
-        return;
+    public Boolean updateGradeById(int ID, int grade) {
+        int result=candidateMapper.updateGradeById(ID,grade);
+        return result>0;
     }
 
     @Override
-    public void deleteCandidateById(int ID) {
-        candidateMapper.deleteCandidateById(ID);
-        return;
+    public Boolean deleteCandidateById(int ID) {
+        int result= candidateMapper.deleteCandidateById(ID);
+        return result>0;
     }
 }

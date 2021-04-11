@@ -36,20 +36,20 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
     @Override
-    public void addInterview(Interview interview) {
-        mapper.addInterview(interview);
-        return;
+    public Boolean addInterview(Interview interview) {
+        int result= mapper.addInterview(interview);
+        return result>0;
     }
 
     @Override
-    public void deleteInterviewById(int ID) {
-        mapper.deleteInterviewById(ID);
-        return;
+    public Boolean deleteInterviewById(int ID) {
+        int result=mapper.deleteInterviewById(ID);
+        return result>0;
     }
 
     @Override
-    public void updateInterviewById(int ID, String detail) {
-        mapper.updateInterviewById(ID,detail);
-        return;
+    public Boolean updateInterviewById(int ID, String detail) {
+        int result= mapper.updateInterviewById(ID,detail);
+        return result>0;
     }
 }

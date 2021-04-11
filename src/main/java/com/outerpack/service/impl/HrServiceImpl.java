@@ -26,8 +26,8 @@ public class HrServiceImpl implements HrService {
     }
 
     @Override
-    public void changePassword(String username, String password) {
-        hrMapper.changePassword(username, password);
-        return;
+    public Boolean changePassword(String username, String password) {
+        int result=hrMapper.changePassword(username, password);
+        return result>0;
     }
 }

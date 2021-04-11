@@ -29,5 +29,5 @@ public interface HrMapper {
      * @param username HR的账户名
      * @param password HR的账户密码
      */
-    void changePassword(@Param("username") String username,@Param("password") String password);
+    int changePassword(@Param("username") String username,@Param("password") String password);
 }
