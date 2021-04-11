@@ -1,5 +1,7 @@
 package com.outerpack.entity.pojo;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel("企业人员实体类")
 public class User {
 //    id int primary key auto_increment,
 //    username varchar(32),

@@ -5,6 +5,9 @@ import com.outerpack.entity.dto.LoginRequest;
 import com.outerpack.entity.pojo.User;
 import com.outerpack.service.UserService;
 import com.outerpack.utils.JwtUtils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -32,8 +35,9 @@ public class LoginController {
     UserService userService;
 
 
+    @ApiOperation("用户登录接口")
     @PostMapping("/login")
-    public Result UserLoginSys(@RequestBody LoginRequest loginRequest, HttpServletResponse response){
+    public Result UserLoginSys(@ApiParam(value = "用户登录实体",example = "json字符串") @RequestBody LoginRequest loginRequest, HttpServletResponse response){
         User user = userService.getUserByName(loginRequest.getUsername());
         String passwordMd5 = new Md5Hash(loginRequest.getPassword(), loginRequest.getUsername(), 1024).toHex();
         System.out.println("加密后的密码===>"+passwordMd5);

@@ -1,5 +1,6 @@
 package com.outerpack.entity.pojo;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,7 @@ import java.util.Date;
  *
  *
  */
+@ApiModel("应聘者实体")
 public class Candidate {
 
     private Integer canId;

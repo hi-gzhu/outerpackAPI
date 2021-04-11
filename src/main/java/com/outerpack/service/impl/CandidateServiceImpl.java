@@ -4,6 +4,7 @@ import com.outerpack.entity.pojo.Candidate;
 import com.outerpack.entity.vo.Candidate.CandidateBrief;
 import com.outerpack.mapper.CandidateMapper;
 import com.outerpack.service.CandidateService;
+import com.outerpack.utils.RedisUtil;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,12 @@ public class CandidateServiceImpl implements CandidateService {
     @Autowired
     private CandidateMapper candidateMapper;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Override
     public Candidate getCandidateById(int id) {
+
         return candidateMapper.getCandidateById(id);
     }
 
