@@ -1,5 +1,6 @@
 package com.outerpack.controller;
 
+import com.outerpack.common.PageResult;
 import com.outerpack.common.Result;
 import com.outerpack.entity.pojo.Candidate;
 import com.outerpack.entity.vo.Candidate.CandidateBrief;
@@ -27,13 +28,9 @@ public class CandidateController {
     }
 
     @ApiOperation("获取所有应聘者的信息(不完整信息)")
-    @PostMapping("/getAllCandidates")
-    public Result getAllCandidates(){
-        List<CandidateBrief> candidateList = candidateService.getCandidateList();
-        if(candidateList!=null){
-            return Result.success("应聘者清单",candidateList);
-        }
-        else return Result.error("服务器不存在应聘者清单");
+    @GetMapping("/getAllCandidates")
+    public PageResult<CandidateBrief> getAllCandidates(@ApiParam(value = "当前页",example = "1")@RequestParam(defaultValue = "1")Integer currentPage){
+        return candidateService.getCandidateList(currentPage);
     }
 
     @ApiOperation("添加一个应聘者")

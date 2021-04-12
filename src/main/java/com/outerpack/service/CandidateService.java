@@ -1,5 +1,6 @@
 package com.outerpack.service;
 
+import com.outerpack.common.PageResult;
 import com.outerpack.entity.pojo.Candidate;
 import com.outerpack.entity.vo.Candidate.CandidateBrief;
 import org.apache.ibatis.annotations.Param;
@@ -18,7 +19,7 @@ public interface CandidateService {
      * 查询所有的应聘者列表，此时只包含少数的属性
      * @return
      */
-    List<CandidateBrief> getCandidateList();
+    PageResult<CandidateBrief> getCandidateList(Integer pageNum);
 
     /**
      * 增加一个应聘者

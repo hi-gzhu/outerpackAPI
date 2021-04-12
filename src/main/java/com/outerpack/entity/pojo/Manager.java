@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Manager {
+public class Manager implements Serializable {
     //    man_id int primary key auto_increment
     private Integer manId;
     //    man_name varchar(32)

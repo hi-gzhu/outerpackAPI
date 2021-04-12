@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -42,7 +43,7 @@ import java.util.Date;
  *
  */
 @ApiModel("应聘者实体")
-public class Candidate {
+public class Candidate implements Serializable {
 
     private Integer canId;
     private String canName;

@@ -34,4 +34,8 @@
         delete from candidates
         where can_id=#{ID}
     </delete>
+
+    <select id="getAllCandidateCount" resultType="int">
+        select count (*) from candidates
+    </select>
 </mapper>

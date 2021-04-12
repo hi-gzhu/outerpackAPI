@@ -43,5 +43,11 @@ public interface CandidateMapper {
      */
     int deleteCandidateById(@Param("ID")int ID);
 
+    /**
+     * 获取所有的应聘者数量
+     * @return
+     */
+    int getAllCandidateCount();
+
 
 }

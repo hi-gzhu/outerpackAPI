@@ -1,5 +1,10 @@
 package com.outerpack.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.outerpack.common.PageHelpStaticCode;
+import com.outerpack.common.PageResult;
+import com.outerpack.common.RedisFrontString;
+import com.outerpack.common.ResultCode;
 import com.outerpack.entity.pojo.Candidate;
 import com.outerpack.entity.vo.Candidate.CandidateBrief;
 import com.outerpack.mapper.CandidateMapper;
@@ -19,15 +24,33 @@ public class CandidateServiceImpl implements CandidateService {
     @Autowired
     private RedisUtil redisUtil;
 
+
     @Override
     public Candidate getCandidateById(int id) {
+        Candidate CanONRedis =(Candidate) redisUtil.
+                hget(RedisFrontString.Redis_CandiDate,
+                        RedisFrontString.Redis_CandiDate_ByCanId + id);
+        if(CanONRedis==null){
+            Candidate candidateBySql = candidateMapper.getCandidateById(id);
+            redisUtil.hset(RedisFrontString.Redis_CandiDate,RedisFrontString.Redis_CandiDate_ByCanId+id,candidateBySql);
+            return candidateBySql;
+        }else{
+            return CanONRedis;
+        }
 
-        return candidateMapper.getCandidateById(id);
     }
 
     @Override
-    public List<CandidateBrief> getCandidateList() {
-        return candidateMapper.getCandidateList();
+    public PageResult<CandidateBrief> getCandidateList(Integer pageNum) {
+        int blog_count = candidateMapper.getAllCandidateCount();
+        int totalPage = (int) Math.ceil(blog_count* 1.0 / PageHelpStaticCode.pageSize);
+        PageHelper.startPage(pageNum,PageHelpStaticCode.pageSize);
+        List<CandidateBrief> candidateList = candidateMapper.getCandidateList();
+        if(candidateList.isEmpty()){
+            return new PageResult<CandidateBrief>(ResultCode.Not_Found,totalPage,pageNum,null);
+        }else{
+            return new PageResult<CandidateBrief>(ResultCode.CREATED_SuccessCode,totalPage,pageNum,candidateList);
+        }
     }
 
     @Override

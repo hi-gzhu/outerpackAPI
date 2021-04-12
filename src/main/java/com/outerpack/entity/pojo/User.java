@@ -6,11 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel("企业人员实体类")
-public class User {
+public class User implements Serializable {
 //    id int primary key auto_increment,
 //    username varchar(32),
 //    password varchar(32),
