@@ -61,6 +61,23 @@ public class CandidateServiceImpl implements CandidateService {
 
     }
 
+    @Override
+    public PageResult<CandidateBrief> getCandidateByPowerString(String power,Integer pageNum) {
+        int blog_count = candidateMapper.getAllCandidateCount();
+        int totalPage = (int) Math.ceil(blog_count* 1.0 / PageHelpStaticCode.pageSize);
+        //总页数
+        PageHelper.startPage(pageNum,PageHelpStaticCode.pageSize);
+
+        List<CandidateBrief> candidateList = candidateMapper.getCandidateByPowerString(power);
+
+
+        if(!candidateList.isEmpty()){
+            return new PageResult<CandidateBrief>(ResultCode.CREATED_SuccessCode,totalPage,pageNum,candidateList);
+        }
+        return new PageResult<CandidateBrief>(ResultCode.Not_Found,totalPage,pageNum,null);
+
+    }
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean addCandidate(Candidate candidate) {
@@ -87,6 +104,8 @@ public class CandidateServiceImpl implements CandidateService {
         }
         return result>0;
     }
+
+
 
 
     private void delRedisCanByID(Integer ID){

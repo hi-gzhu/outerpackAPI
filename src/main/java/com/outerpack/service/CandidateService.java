@@ -40,5 +40,10 @@ public interface CandidateService {
      */
     Boolean deleteCandidateById(@Param("ID")int ID);
 
-
+    /**
+     * 输入技术栈查出含有该技术栈的应聘者
+     * @param power 技术栈
+     * @return
+     */
+    PageResult<CandidateBrief> getCandidateByPowerString(@Param("power") String power,@Param("pageNum") Integer pageNum);
 }

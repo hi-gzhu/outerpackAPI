@@ -29,8 +29,9 @@ public class CandidateController {
 
     @ApiOperation("获取所有应聘者的信息(不完整信息)")
     @GetMapping("/getAllCandidates")
-    public PageResult<CandidateBrief> getAllCandidates(@ApiParam(value = "当前页",example = "1")@RequestParam(defaultValue = "1")Integer currentPage){
-        return candidateService.getCandidateList(currentPage);
+    public Result getAllCandidates(@ApiParam(value = "当前页",example = "1")@RequestParam(defaultValue = "1")Integer currentPage){
+        PageResult<CandidateBrief> candidateList = candidateService.getCandidateList(currentPage);
+        return Result.success("当前页的招聘者名单",candidateList);
     }
 
     @ApiOperation("添加一个应聘者")
@@ -55,5 +56,12 @@ public class CandidateController {
         Boolean aBoolean = candidateService.deleteCandidateById(ID);
         if (aBoolean)return Result.success("删除成功");
         else return Result.error("删除失败");
+    }
+
+    @GetMapping("/getCandidatesByPower")
+    public Result getCandidateByPower(@ApiParam(value = "能力",example = "1")@PathVariable("power")String power,@ApiParam(value = "页码",example = "2")@PathVariable("pageNum") int pageNum){
+
+        PageResult<CandidateBrief> candidateByPowerString = candidateService.getCandidateByPowerString(power, pageNum);
+        return  Result.success("该技术栈当前页",candidateByPowerString);
     }
 }

@@ -49,5 +49,11 @@ public interface CandidateMapper {
      */
     int getAllCandidateCount();
 
+    /**
+     * 输入技术栈查出含有该技术栈的应聘者
+     * @param power 技术栈
+     * @return
+     */
+    List<CandidateBrief> getCandidateByPowerString(@Param("power") String power);
 
 }
