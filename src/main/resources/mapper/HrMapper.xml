@@ -12,7 +12,7 @@
     <select id="getHrByName" resultMap="HrResult" >
         select hr_id,hr_username,hr_password
         from recruit.hr
-        where hr_username=#{username};
+        where hr_username=#{username}
     </select>
     <select id="getHrById" resultMap="HrResult">
         select hr_id,hr_username,hr_password
@@ -22,6 +22,6 @@
     <update id="changePassword">
         update recruit.manager
         set man_password=#{password}
-        where man_username=#{username};
+        where man_username=#{username}
     </update>
 </mapper>

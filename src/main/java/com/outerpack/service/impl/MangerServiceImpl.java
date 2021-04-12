@@ -7,6 +7,7 @@ import com.outerpack.service.MangerService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @ClassName: MangerServiceImpl
@@ -34,6 +35,7 @@ public class MangerServiceImpl implements MangerService {
         return managerMapper.getManagerById(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean changePassword(String username, String password) {
         int result=managerMapper.changePassword(username,password);

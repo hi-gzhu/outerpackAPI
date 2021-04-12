@@ -6,6 +6,7 @@ import com.outerpack.service.UserService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Data
 @Service
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.getUserById(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean changePassword(String username, String password) {
         int result=userMapper.changePassword(username,password);

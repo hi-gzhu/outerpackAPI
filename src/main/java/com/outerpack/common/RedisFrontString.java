@@ -14,11 +14,14 @@ public class RedisFrontString {
     /**
      * CANDIDATE 前缀
      */
-    public static final String Redis_CandiDate="Candidates:Data";
+    public static final String Redis_CandiDateDetail="Candidates:DeatilData";
     /**
      *
      */
     public static final String Redis_CandiDate_ByCanId="Can_ID:";
+
+
+
 
 
 

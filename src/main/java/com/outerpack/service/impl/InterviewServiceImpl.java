@@ -6,6 +6,7 @@ import com.outerpack.service.InterviewService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,18 +36,21 @@ public class InterviewServiceImpl implements InterviewService {
         return mapper.getInterviewByInterviewId(ID);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean addInterview(Interview interview) {
         int result= mapper.addInterview(interview);
         return result>0;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean deleteInterviewById(int ID) {
         int result=mapper.deleteInterviewById(ID);
         return result>0;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean updateInterviewById(int ID, String detail) {
         int result= mapper.updateInterviewById(ID,detail);

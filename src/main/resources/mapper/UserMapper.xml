@@ -7,17 +7,17 @@
     <select id="getUserById" resultType="com.outerpack.entity.pojo.User">
         select *
         from user
-        where id=#{ID};
+        where id=#{ID}
     </select>
     <select id="getUserByName" resultType="com.outerpack.entity.pojo.User">
         select *
         from user
-        where username=#{username};
+        where username=#{username}
     </select>
     <update id="changePassword">
         update recruit.manager
         set password=#{password}
-        where username=#{username};
+        where username=#{username}
     </update>
     <select id="getUserPowerByID" resultType="com.outerpack.entity.pojo.User">
         select u.id,u.username,u.password,u.permission_id,p.power

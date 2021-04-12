@@ -24,20 +24,20 @@
     <select id="getInterviewByInterviewId" resultType="com.outerpack.entity.pojo.Interview">
         select *
         from interview
-        where inter_id=#{ID};
+        where inter_id=#{ID}
     </select>
     <insert id="addInterview" parameterType="com.outerpack.entity.pojo.Interview">
         insert into interview (inter_id,hr_id,can_id,inter_detail)
-        values (#{interId},#{hrId},#{canId},#{interDetail});
+        values (#{interId},#{hrId},#{canId},#{interDetail})
     </insert>
     <delete id="deleteInterviewById">
         delete from interview
-        where inter_id=#{ID};
+        where inter_id=#{ID}
     </delete>
     <update id="updateInterviewById">
         update interview
         set inter_detail=#{detail}
-        where inter_id=#{ID};
+        where inter_id=#{ID}
     </update>
 
 </mapper>

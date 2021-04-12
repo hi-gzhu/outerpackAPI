@@ -13,7 +13,9 @@ import com.outerpack.utils.RedisUtil;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 @Data
 @Service
@@ -28,13 +30,15 @@ public class CandidateServiceImpl implements CandidateService {
     @Override
     public Candidate getCandidateById(int id) {
         Candidate CanONRedis =(Candidate) redisUtil.
-                hget(RedisFrontString.Redis_CandiDate,
+                hget(RedisFrontString.Redis_CandiDateDetail,
                         RedisFrontString.Redis_CandiDate_ByCanId + id);
         if(CanONRedis==null){
             Candidate candidateBySql = candidateMapper.getCandidateById(id);
-            redisUtil.hset(RedisFrontString.Redis_CandiDate,RedisFrontString.Redis_CandiDate_ByCanId+id,candidateBySql);
+            System.out.println("从数据库中拿");
+            redisUtil.hset(RedisFrontString.Redis_CandiDateDetail,RedisFrontString.Redis_CandiDate_ByCanId+id,candidateBySql);
             return candidateBySql;
         }else{
+            System.out.println("从redis中拿");
             return CanONRedis;
         }
 
@@ -46,28 +50,52 @@ public class CandidateServiceImpl implements CandidateService {
         int totalPage = (int) Math.ceil(blog_count* 1.0 / PageHelpStaticCode.pageSize);
         PageHelper.startPage(pageNum,PageHelpStaticCode.pageSize);
         List<CandidateBrief> candidateList = candidateMapper.getCandidateList();
-        if(candidateList.isEmpty()){
-            return new PageResult<CandidateBrief>(ResultCode.Not_Found,totalPage,pageNum,null);
-        }else{
+
+
+        if(!candidateList.isEmpty()){
             return new PageResult<CandidateBrief>(ResultCode.CREATED_SuccessCode,totalPage,pageNum,candidateList);
         }
+        return new PageResult<CandidateBrief>(ResultCode.Not_Found,totalPage,pageNum,null);
+
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean addCandidate(Candidate candidate) {
         int result=candidateMapper.addCandidate(candidate);
         return result>0;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean updateGradeById(int ID, int grade) {
         int result=candidateMapper.updateGradeById(ID,grade);
+        if(result>0){
+            delRedisCanByID(ID);
+        }
         return result>0;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean deleteCandidateById(int ID) {
         int result= candidateMapper.deleteCandidateById(ID);
+        if(result>0){
+            delRedisCanByID(ID);
+        }
         return result>0;
     }
+
+
+    private void delRedisCanByID(Integer ID){
+        boolean hasKey = redisUtil.hHasKey(RedisFrontString.Redis_CandiDateDetail,
+                RedisFrontString.Redis_CandiDate_ByCanId + ID);
+        if(hasKey){
+            redisUtil.hdel(RedisFrontString.Redis_CandiDateDetail,
+                    RedisFrontString.Redis_CandiDate_ByCanId + ID);
+        }
+
+    }
+
+
 }

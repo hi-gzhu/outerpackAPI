@@ -25,6 +25,7 @@ public class HrServiceImpl implements HrService {
         return hrMapper.getHrById(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean changePassword(String username, String password) {
         int result=hrMapper.changePassword(username, password);
