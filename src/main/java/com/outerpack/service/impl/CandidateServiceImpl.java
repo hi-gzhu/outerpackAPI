@@ -48,7 +48,9 @@ public class CandidateServiceImpl implements CandidateService {
     public PageResult<CandidateBrief> getCandidateList(Integer pageNum) {
         int blog_count = candidateMapper.getAllCandidateCount();
         int totalPage = (int) Math.ceil(blog_count* 1.0 / PageHelpStaticCode.pageSize);
+        //总页数
         PageHelper.startPage(pageNum,PageHelpStaticCode.pageSize);
+
         List<CandidateBrief> candidateList = candidateMapper.getCandidateList();
 
 

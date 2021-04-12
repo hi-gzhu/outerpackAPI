@@ -1,5 +1,9 @@
 package com.outerpack.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.outerpack.common.PageHelpStaticCode;
+import com.outerpack.common.PageResult;
+import com.outerpack.common.ResultCode;
 import com.outerpack.entity.pojo.Interview;
 import com.outerpack.mapper.InterviewMapper;
 import com.outerpack.service.InterviewService;
@@ -17,18 +21,42 @@ public class InterviewServiceImpl implements InterviewService {
     private InterviewMapper mapper;
 
     @Override
-    public List<Interview> getAllInterview() {
-        return mapper.getAllInterview();
+    public PageResult<Interview> getAllInterview(Integer pageNum) {
+        int interviewCounts = mapper.getInterviewCount();
+        int totalPage=(int)Math.ceil(interviewCounts*1.0/ PageHelpStaticCode.pageSize);
+        PageHelper.startPage(pageNum,PageHelpStaticCode.pageSize);
+        List<Interview> allInterview = mapper.getAllInterview();
+        if(!allInterview.isEmpty()){
+            return new PageResult<Interview>(ResultCode.CREATED_SuccessCode,totalPage,pageNum,allInterview);
+        }else{
+            return new PageResult<Interview>(ResultCode.Not_Found,totalPage,pageNum,null);
+        }
     }
 
     @Override
-    public List<Interview> getInterviewByCandidateId(int ID) {
-        return mapper.getInterviewByCandidateId(ID);
+    public PageResult<Interview> getInterviewByCandidateId(int ID,int pageNum) {
+        int interviewCounts = mapper.getInterviewCount();
+        int totalPage=(int)Math.ceil(interviewCounts*1.0/ PageHelpStaticCode.pageSize);
+        PageHelper.startPage(pageNum,PageHelpStaticCode.pageSize);
+        List<Interview> allInterview = mapper.getInterviewByCandidateId(ID);
+        if(!allInterview.isEmpty()){
+            return new PageResult<Interview>(ResultCode.CREATED_SuccessCode,totalPage,pageNum,allInterview);
+        }else{
+            return new PageResult<Interview>(ResultCode.Not_Found,totalPage,pageNum,null);
+        }
     }
 
     @Override
-    public List<Interview> getInterviewByHrId(int ID) {
-        return mapper.getInterviewByHrId(ID);
+    public PageResult<Interview> getInterviewByHrId(int ID,int pageNum) {
+        int interviewCounts = mapper.getInterviewCount();
+        int totalPage=(int)Math.ceil(interviewCounts*1.0/ PageHelpStaticCode.pageSize);
+        PageHelper.startPage(pageNum,PageHelpStaticCode.pageSize);
+        List<Interview> allInterview = mapper.getInterviewByHrId(ID);
+        if(!allInterview.isEmpty()){
+            return new PageResult<Interview>(ResultCode.CREATED_SuccessCode,totalPage,pageNum,allInterview);
+        }else{
+            return new PageResult<Interview>(ResultCode.Not_Found,totalPage,pageNum,null);
+        }
     }
 
     @Override
@@ -55,5 +83,10 @@ public class InterviewServiceImpl implements InterviewService {
     public Boolean updateInterviewById(int ID, String detail) {
         int result= mapper.updateInterviewById(ID,detail);
         return result>0;
+    }
+
+    @Override
+    public int getInterviewCount() {
+        return mapper.getInterviewCount();
     }
 }

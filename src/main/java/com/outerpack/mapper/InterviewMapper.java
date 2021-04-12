@@ -57,4 +57,10 @@ public interface InterviewMapper {
      * @param detail 修改后面试记录的描述
      */
     int updateInterviewById(@Param("ID")int ID,@Param("detail")String detail);
+
+    /**
+     * 查询所有的面试记录的个数
+     * @return
+     */
+    int getInterviewCount();
 }

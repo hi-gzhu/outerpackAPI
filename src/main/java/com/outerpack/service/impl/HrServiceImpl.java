@@ -17,7 +17,6 @@ public class HrServiceImpl implements HrService {
     @Override
     public HrResult getHrByName(String username) {
         return hrMapper.getHrByName(username);
-
     }
 
     @Override

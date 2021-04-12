@@ -39,5 +39,9 @@
         set inter_detail=#{detail}
         where inter_id=#{ID}
     </update>
+    <select id="getInterviewCount">
+        select count(*)
+        from interview
+    </select>
 
 </mapper>

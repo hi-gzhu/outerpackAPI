@@ -23,10 +23,7 @@ class OuterpackApplicationTests {
 
     @Test
     void contextLoads() {
-        List<Interview> allInterview = interviewService.getAllInterview();
-        for (Interview interview : allInterview) {
-            System.out.println(interview);
-        }
+
     }
 
 }
