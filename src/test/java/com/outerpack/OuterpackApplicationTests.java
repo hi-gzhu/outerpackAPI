@@ -1,5 +1,6 @@
 package com.outerpack;
 
+import com.outerpack.common.PageResult;
 import com.outerpack.entity.pojo.Candidate;
 import com.outerpack.entity.pojo.Interview;
 import com.outerpack.entity.pojo.Manager;
@@ -23,7 +24,8 @@ class OuterpackApplicationTests {
 
     @Test
     void contextLoads() {
-
+        PageResult<Interview> allInterview = interviewService.getAllInterview(1);
+        System.out.println(allInterview);
     }
 
 }

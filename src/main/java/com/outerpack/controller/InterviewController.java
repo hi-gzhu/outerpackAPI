@@ -9,6 +9,7 @@ import com.outerpack.service.InterviewService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.Data;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class InterviewController {
     @Autowired
     private InterviewService interviewService;
 
+    @RequiresAuthentication
     @ApiOperation("根据面试记录ID删除面试记录")
     @DeleteMapping("/deleteByID")
     public Result deleteInterview(@ApiParam(value = "面试记录ID",example = "1") @PathVariable("ID")int ID){
@@ -30,6 +32,7 @@ public class InterviewController {
         else return Result.error("删除失败");
     }
 
+    @RequiresAuthentication
     @ApiOperation("添加面试记录")
     @PostMapping("/addInterview")
     public Result addInterview(@ApiParam(value = "面试记录实体",example = "json字符串")@RequestBody Interview interview){

@@ -6,6 +6,7 @@ import com.outerpack.service.HrService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.Data;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +33,7 @@ public class HrController {
         else return Result.error("没有该Hr");
     }
 
+    @RequiresAuthentication
     @ApiOperation("根据HR的名称修改密码")
     @PutMapping("/changePassword/{name}/{password}")
     public Result change(@ApiParam(value = "HR的名称",example = "hr")@PathVariable("name") String username,@ApiParam(value = "密码",example = "123456789")@PathVariable("password") String password){

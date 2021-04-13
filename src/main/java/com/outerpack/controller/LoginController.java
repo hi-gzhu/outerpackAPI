@@ -51,11 +51,7 @@ public class LoginController {
     }
 
 
-    @GetMapping("/adminPage")
-    @RequiresAuthentication
-    public Result getAdminPage(){
-        return Result.success("管理员页面");
-    }
+
 
 
 

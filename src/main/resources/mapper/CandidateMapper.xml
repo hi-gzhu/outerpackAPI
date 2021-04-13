@@ -41,6 +41,6 @@
     <select id="getCandidateByPowerString" parameterType="java.lang.String" resultMap="candidate">
         select can_id,can_name,can_age,can_experience,can_wantPosition
         from candidates
-        where where can_power like concat(concat('%',#{power},'%'));
+        where  can_power like concat(concat('%',#{power},'%'))
     </select>
 </mapper>

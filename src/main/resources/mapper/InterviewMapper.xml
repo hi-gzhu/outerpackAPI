@@ -5,23 +5,29 @@
 <mapper namespace="com.outerpack.mapper.InterviewMapper">
 
 
-    <select id="getAllInterview" resultType="com.outerpack.entity.pojo.Interview">
-        select * from interview;
+    <resultMap id="resultInterviewMap" type="com.outerpack.entity.pojo.Interview">
+        <id property="interId" column="inter_id"/>
+        <id property="hrId" column="hr_id"/>
+        <id property="canId" column="can_id"/>
+        <id property="interDetail" column="inter_detail"/>
+    </resultMap>
+    <select id="getAllInterview" resultMap="resultInterviewMap">
+        select * from interview
     </select>
 
 
 
-    <select id="getInterviewByCandidateId" resultType="com.outerpack.entity.pojo.Interview">
+    <select id="getInterviewByCandidateId" resultMap="resultInterviewMap">
         select *
         from interview
-        where can_id=#{ID};
+        where can_id=#{ID}
     </select>
-    <select id="getInterviewByHrId" resultType="com.outerpack.entity.pojo.Interview">
+    <select id="getInterviewByHrId" resultMap="resultInterviewMap">
         select *
         from interview
-        where hr_id=#{ID};
+        where hr_id=#{ID}
     </select>
-    <select id="getInterviewByInterviewId" resultType="com.outerpack.entity.pojo.Interview">
+    <select id="getInterviewByInterviewId" resultMap="resultInterviewMap">
         select *
         from interview
         where inter_id=#{ID}
@@ -39,7 +45,7 @@
         set inter_detail=#{detail}
         where inter_id=#{ID}
     </update>
-    <select id="getInterviewCount">
+    <select id="getInterviewCount" resultType="int">
         select count(*)
         from interview
     </select>

@@ -8,6 +8,7 @@ import com.outerpack.mapper.CandidateMapper;
 import com.outerpack.service.CandidateService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.util.List;
 public class CandidateController {
     @Autowired
     private CandidateService candidateService;
+
 
     @ApiOperation("根据应聘者ID获取应聘者信息")
     @GetMapping("/getCandidate/{ID}")
@@ -33,7 +35,7 @@ public class CandidateController {
         PageResult<CandidateBrief> candidateList = candidateService.getCandidateList(currentPage);
         return Result.success("当前页的招聘者名单",candidateList);
     }
-
+    @RequiresAuthentication
     @ApiOperation("添加一个应聘者")
     @PostMapping("/addCandidate")
     public Result addCandidate(@ApiParam(value = "应聘者实体",example = "json字符串")@RequestBody Candidate candidate){
@@ -42,6 +44,7 @@ public class CandidateController {
         else return Result.error("添加失败");
     }
 
+    @RequiresAuthentication
     @ApiOperation("根据应聘者ID修改对应的成绩")
     @PutMapping("/updateGrade/{ID}/{grade}")
     public Result updateGrade(@ApiParam(value = "应聘者ID",example = "1")@PathVariable("ID") int ID,@ApiParam(value = "应聘者成绩",example = "100")@PathVariable("grade") int grade){
@@ -50,6 +53,7 @@ public class CandidateController {
         else return Result.error("修改失败");
     }
 
+    @RequiresAuthentication
     @ApiOperation("根据应聘者ID删除应聘者")
     @DeleteMapping("/delteCandidate/{ID}")
     public Result deleteCandidate(@ApiParam(value = "应聘者ID",example = "1")@PathVariable("ID")int ID){
@@ -60,7 +64,6 @@ public class CandidateController {
 
     @GetMapping("/getCandidatesByPower/{power}")
     public Result getCandidateByPower(@ApiParam(value = "能力",example = "1")@PathVariable("power")String power,@ApiParam(value = "页码",example = "2")@RequestParam(defaultValue = "1") Integer pageNum){
-
         PageResult<CandidateBrief> candidateByPowerString = candidateService.getCandidateByPowerString(power, pageNum);
         return  Result.success("该技术栈当前页",candidateByPowerString);
     }

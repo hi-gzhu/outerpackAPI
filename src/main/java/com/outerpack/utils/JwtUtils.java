@@ -23,9 +23,9 @@ import java.util.Date;
 public class JwtUtils {
 
     /**
-     * 过期时间 2分钟
+     * 过期时间 7天
      */
-    private static final long EXPIRE_TIME = 3*60*1000;
+    private static final long EXPIRE_TIME = 604800;
 
 
     /**
