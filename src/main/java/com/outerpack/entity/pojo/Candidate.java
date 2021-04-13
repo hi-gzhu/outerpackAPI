@@ -1,6 +1,7 @@
 package com.outerpack.entity.pojo;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,19 +45,45 @@ import java.util.Date;
  */
 @ApiModel("应聘者实体")
 public class Candidate implements Serializable {
-
+    @ApiModelProperty(value = "应聘者ID",example = "1")
     private Integer canId;
+
+    @ApiModelProperty(value = "应聘者姓名",example = "My-cong")
     private String canName;
+
+    @ApiModelProperty(value = "应聘者年龄",example = "18")
     private Integer canAge;
+
+    @ApiModelProperty(value = "应聘者工作经验",example = "3")
     private Integer canExperience;
+
+    @ApiModelProperty(value = "应聘者应聘岗位",example = "后端开发")
     private String canWantPosition;
+
+    @ApiModelProperty(value = "",example = "1")
     private String canIdentify;
+
+    @ApiModelProperty(value = "应聘者应聘的岗位的部门",example = "物业部")
     private Integer canDep;
+
+    @ApiModelProperty(value = "应聘者目前所处的面试等级",example = "2")
     private Integer canGrade;
+
+    @ApiModelProperty(value = "应聘者的能力",example = "springboot")
     private String canPower;
+
+    @ApiModelProperty(value = "应聘者性别",example = "男")
     private String canGender;
+
+    @ApiModelProperty(value = "应聘者投递简历的日期",example = "2021/10")
     private Date canDate;
+
+    @ApiModelProperty(value = "应聘者期望薪资/k",example = "15")
     private Integer canSalary;
+
+    @ApiModelProperty(value = "应聘者的电话",example = "19120533958")
     private String canPhone;
+
+    @ApiModelProperty(value = "应聘者头像")
     private String canHead;
 }
