@@ -58,8 +58,8 @@ public class CandidateController {
         else return Result.error("删除失败");
     }
 
-    @GetMapping("/getCandidatesByPower")
-    public Result getCandidateByPower(@ApiParam(value = "能力",example = "1")@PathVariable("power")String power,@ApiParam(value = "页码",example = "2")@PathVariable("pageNum") int pageNum){
+    @GetMapping("/getCandidatesByPower/{power}")
+    public Result getCandidateByPower(@ApiParam(value = "能力",example = "1")@PathVariable("power")String power,@ApiParam(value = "页码",example = "2")@RequestParam(defaultValue = "1") Integer pageNum){
 
         PageResult<CandidateBrief> candidateByPowerString = candidateService.getCandidateByPowerString(power, pageNum);
         return  Result.success("该技术栈当前页",candidateByPowerString);
