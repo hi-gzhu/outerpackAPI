@@ -39,9 +39,10 @@ public class LoginController {
     @PostMapping("/login")
     public Result UserLoginSys(@ApiParam(value = "用户登录实体",example = "json字符串") @RequestBody LoginRequest loginRequest, HttpServletResponse response){
         User user = userService.getUserByName(loginRequest.getUsername());
+        String username=loginRequest.getUsername();
         String passwordMd5 = new Md5Hash(loginRequest.getPassword(), loginRequest.getUsername(), 1024).toHex();
         System.out.println("加密后的密码===>"+passwordMd5);
-        if(!user.getPassword().equals(passwordMd5)){
+        if(!user.getPassword().equals(passwordMd5)&&!user.getUsername().equals(username)){
             return Result.error("账户密码错误");
         }
         String token = JwtUtils.getToken(loginRequest.getUsername(), passwordMd5);
