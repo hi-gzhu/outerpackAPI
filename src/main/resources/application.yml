@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     username: root
-    password: root
+    password: dc8f68451667da4e
     url: jdbc:mysql://127.0.0.1:3306/recruit?serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource # 自定义数据源
@@ -32,6 +32,6 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true #开启驼峰命名
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.outerpack.entity.pojo
