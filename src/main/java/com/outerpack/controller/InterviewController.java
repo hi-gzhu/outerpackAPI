@@ -25,7 +25,7 @@ public class InterviewController {
 
     @RequiresAuthentication
     @ApiOperation("根据面试记录ID删除面试记录")
-    @DeleteMapping("/deleteByID")
+    @DeleteMapping("/deleteByID/{ID}")
     public Result deleteInterview(@ApiParam(value = "面试记录ID",example = "1") @PathVariable("ID")int ID){
         Boolean aBoolean = interviewService.deleteInterviewById(ID);
         if(aBoolean)return Result.success("删除成功");
